@@ -2,15 +2,16 @@ package com.dutta.hritwik.contentcalendar.controller;
 
 import com.dutta.hritwik.contentcalendar.model.Content;
 import com.dutta.hritwik.contentcalendar.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/content")
+@CrossOrigin
 public class ContentController {
 
     private final ContentCollectionRepository repository;
@@ -32,7 +33,7 @@ public class ContentController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody Content content) {
+    public void create(@Valid @RequestBody Content content) {
         repository.save(content);
     }
 
